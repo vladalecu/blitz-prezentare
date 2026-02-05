@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, ReactNode } from 'react';
+import { useState, useEffect, useCallback, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X, Target, BarChart3, Search, Lightbulb, CheckCircle2, Map, Layout, Zap, Smartphone, MousePointerClick, Gauge } from 'lucide-react';
 import akyLogo from './assets/AKY-X.png';
@@ -11,7 +11,6 @@ import res1 from './assets/Screenshot 2026-02-05 at 20.19.46.png';
 import res2 from './assets/Screenshot 2026-02-05 at 20.20.21.png';
 import res3 from './assets/Screenshot 2026-02-05 at 20.20.43.png';
 import res4 from './assets/Screenshot 2026-02-05 at 20.21.41.png';
-import heatmapImg from './assets/heatmap-on-specflow.webp';
 
 // Benchmark Screenshots
 import bench1 from './assets/Screenshot 2026-02-05 at 22.27.52.png';
@@ -330,7 +329,7 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
 
   const item = {
     hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1, transition: { duration: 0.4, ease: "easeOut" } }
+    show: { y: 0, opacity: 1, transition: { duration: 0.4 } }
   };
 
   return (
@@ -998,7 +997,7 @@ export default function App() {
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.2}
-            onDragEnd={(e, { offset, velocity }) => {
+            onDragEnd={(_e, { offset, velocity }) => {
               const swipe = Math.abs(offset.x) * velocity.x;
               if (swipe < -10000) {
                 nextSlide();
