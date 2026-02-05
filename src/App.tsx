@@ -338,17 +338,17 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       variants={container}
       initial="hidden"
       animate="show"
-      className="flex flex-col items-center justify-center w-full max-w-6xl relative"
+      className="flex flex-col items-center justify-center w-full max-w-6xl relative px-4"
     >
       {slide.icon && (
-        <motion.div variants={item} className="mb-8 p-6 bg-white/5 rounded-2xl">
+        <motion.div variants={item} className="mb-6 md:mb-8 p-4 md:p-6 bg-white/5 rounded-xl md:rounded-2xl">
           {slide.icon}
         </motion.div>
       )}
       
       <motion.h1 
         variants={item}
-        className={`${slide.type === 'hero' ? 'text-[84px]' : 'text-[64px]'} font-extrabold mb-4 leading-[1.1] text-center tracking-tight px-4`}
+        className={`${slide.type === 'hero' ? 'text-[84px] md:text-[84px] text-[48px]' : 'text-[36px] md:text-[64px]'} font-extrabold mb-4 leading-[1.1] text-center tracking-tight px-4`}
       >
         {slide.title}
       </motion.h1>
@@ -356,7 +356,7 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       {slide.subtitle && (
         <motion.p 
           variants={item}
-          className="text-[24px] text-blitz-green font-semibold mb-12 text-center max-w-4xl uppercase tracking-[0.1em]"
+          className="text-[16px] md:text-[24px] text-blitz-green font-semibold mb-8 md:mb-12 text-center max-w-4xl uppercase tracking-[0.05em] md:tracking-[0.1em] px-4"
         >
           {slide.subtitle}
         </motion.p>
@@ -366,7 +366,7 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
         <motion.div
           variants={item}
           onClick={() => onImageClick(slide.image!)}
-          className="relative w-full max-w-5xl aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl mb-8 group cursor-zoom-in"
+          className="relative w-full max-w-5xl aspect-video rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl mb-6 md:mb-8 group cursor-zoom-in"
         >
           <img
             src={slide.image}
@@ -374,22 +374,22 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-blitz-dark/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          <div className="absolute bottom-8 left-8 right-8 text-left opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0">
-            <p className="text-white font-bold text-xl">Exemplu de monitorizare Hotjar</p>
-            <p className="text-white/60 text-lg">Zonele de interes (hotspots) ne vor arăta unde să optimizăm în faza a 2-a.</p>
+          <div className="absolute bottom-4 md:bottom-8 left-4 md:left-8 right-4 md:right-8 text-left opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0">
+            <p className="text-white font-bold text-base md:text-xl">Exemplu de monitorizare Hotjar</p>
+            <p className="text-white/60 text-sm md:text-lg">Zonele de interes (hotspots) ne vor arăta unde să optimizăm în faza a 2-a.</p>
           </div>
         </motion.div>
       )}
 
       {slide.type === 'gallery' && slide.images && (
-        <div className="relative w-full h-[600px] mt-8 flex items-center justify-center">
-          <div className="grid grid-cols-2 gap-8 w-full max-w-6xl">
+        <div className="relative w-full h-auto md:h-[600px] mt-4 md:mt-8 flex items-center justify-center px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 w-full max-w-6xl">
             {slide.images.map((img, i) => (
               <motion.div
                 key={i}
                 variants={item}
                 whileHover={{ 
-                  scale: 1.05, 
+                  scale: 1.02, 
                   zIndex: 50,
                   transition: { duration: 0.2 } 
                 }}
@@ -397,11 +397,11 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
                   e.stopPropagation();
                   onImageClick(img);
                 }}
-                className="relative group aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl cursor-zoom-in bg-white/[0.02]"
+                className="relative group aspect-video rounded-xl md:rounded-2xl overflow-hidden border border-white/10 shadow-2xl cursor-zoom-in bg-white/[0.02]"
               >
                 <img src={img} alt="" className="w-full h-full object-cover group-hover:object-contain transition-all duration-500" />
                 <div className="absolute inset-0 bg-blitz-dark/20 group-hover:bg-transparent transition-colors" />
-                <div className="absolute inset-0 border-2 border-transparent group-hover:border-blitz-green/30 transition-colors rounded-2xl pointer-events-none" />
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-blitz-green/30 transition-colors rounded-xl md:rounded-2xl pointer-events-none" />
               </motion.div>
             ))}
           </div>
@@ -412,7 +412,7 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
         <>
           <motion.div
             variants={item}
-            className={`relative w-full max-w-5xl aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl ${slide.points ? 'mb-12' : ''}`}
+            className={`relative w-full max-w-5xl aspect-video rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl ${slide.points ? 'mb-8 md:mb-12' : ''}`}
           >
             <video
               src={slide.video}
@@ -428,7 +428,7 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
           {slide.warning && (
             <motion.p
               variants={item}
-              className="mt-6 text-red-400/80 text-sm font-bold uppercase tracking-widest px-6 py-2 border border-red-400/20 bg-red-400/5 rounded-full"
+              className="mt-4 md:mt-6 text-red-400/80 text-xs md:text-sm font-bold uppercase tracking-widest px-4 md:px-6 py-1.5 md:py-2 border border-red-400/20 bg-red-400/5 rounded-full"
             >
               ⚠️ {slide.warning}
             </motion.p>
@@ -437,62 +437,62 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       )}
 
       {slide.type === 'diamond' && slide.diamondSteps && (
-        <div className="relative w-full max-w-7xl mt-16 px-12 pb-24">
-          {/* Main horizontal line */}
-          <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-y-1/2 z-0" />
+        <div className="relative w-full max-w-7xl mt-8 md:mt-16 px-4 md:px-12 pb-12 md:pb-24">
+          {/* Main horizontal line - hidden on mobile */}
+          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-y-1/2 z-0" />
           
-          <div className="flex items-center justify-between relative z-10">
+          <div className="flex flex-col md:flex-row items-center justify-between relative z-10 gap-8 md:gap-0">
             {slide.diamondSteps.map((s, i) => (
               <motion.div
                 key={i}
                 variants={item}
-                className="relative flex flex-col items-center group flex-1"
+                className="relative flex flex-col items-center group flex-1 w-full md:w-auto"
               >
-                {/* Diamond Shape */}
-                <div className="relative w-64 h-64 mb-12 transition-transform duration-500 group-hover:scale-105">
+                {/* Diamond Shape - Smaller on Mobile */}
+                <div className="relative w-48 h-48 md:w-64 md:h-64 mb-6 md:mb-12 transition-transform duration-500 group-hover:scale-105">
                   <motion.div
                     animate={{ rotate: 45 }}
-                    className={`absolute inset-0 border-2 transition-all duration-500 rounded-2xl shadow-2xl ${
+                    className={`absolute inset-0 border-2 transition-all duration-500 rounded-xl md:rounded-2xl shadow-2xl ${
                       i < 2
                         ? 'bg-white/[0.03] border-white/10 group-hover:border-blitz-green/40 group-hover:bg-blitz-green/5' 
                         : 'bg-blitz-green/[0.05] border-blitz-green/20 group-hover:border-blitz-green group-hover:bg-blitz-green/10'
                     }`}
                   />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-10">
-                    <span className="text-sm uppercase tracking-[0.2em] text-blitz-green font-bold mb-4 opacity-70">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 md:p-10">
+                    <span className="text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em] text-blitz-green font-bold mb-2 md:mb-4 opacity-70">
                       {s.phase}
                     </span>
-                    <h3 className="text-2xl font-black leading-tight tracking-tight">
+                    <h3 className="text-lg md:text-2xl font-black leading-tight tracking-tight">
                       {s.title}
                     </h3>
                   </div>
                 </div>
 
-                {/* Description - always visible but subtle, pops on hover */}
-                <div className="text-center px-6 min-h-[80px]">
-                  <p className="text-lg text-white/40 leading-relaxed max-w-[240px] mx-auto group-hover:text-white transition-colors duration-300">
+                {/* Description - Mobile Optimized */}
+                <div className="text-center px-4 md:px-6 min-h-[60px] md:min-h-[80px]">
+                  <p className="text-sm md:text-lg text-white/40 leading-relaxed max-w-[200px] md:max-w-[240px] mx-auto group-hover:text-white transition-colors duration-300">
                     {s.description}
                   </p>
                 </div>
 
-                {/* Phase separation labels at the bottom */}
+                {/* Phase separation labels - Hidden on mobile */}
                 {i === 0 && (
-                  <div className="absolute -bottom-24 left-0 w-full flex justify-center text-[10px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
+                  <div className="hidden md:flex absolute -bottom-24 left-0 w-full justify-center text-[10px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
                     Divergent (Discover)
                   </div>
                 )}
                 {i === 1 && (
-                  <div className="absolute -bottom-24 left-0 w-full flex justify-center text-[10px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
+                  <div className="hidden md:flex absolute -bottom-24 left-0 w-full justify-center text-[10px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
                     Convergent (Define)
                   </div>
                 )}
                 {i === 2 && (
-                  <div className="absolute -bottom-24 left-0 w-full flex justify-center text-[10px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
+                  <div className="hidden md:flex absolute -bottom-24 left-0 w-full justify-center text-[10px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
                     Divergent (Develop)
                   </div>
                 )}
                 {i === 3 && (
-                  <div className="absolute -bottom-24 left-0 w-full flex justify-center text-[10px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
+                  <div className="hidden md:flex absolute -bottom-24 left-0 w-full justify-center text-[10px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
                     Convergent (Deliver)
                   </div>
                 )}
@@ -500,8 +500,8 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
             ))}
           </div>
 
-          {/* Section labels */}
-          <div className="absolute -top-16 left-0 right-0 flex px-12">
+          {/* Section labels - Hidden on mobile */}
+          <div className="hidden md:flex absolute -top-16 left-0 right-0 px-12">
             <div className="flex-1 text-center border-l border-r border-white/10 py-2">
               <span className="text-[10px] uppercase tracking-[0.5em] text-white/30 font-black">Problem Space</span>
             </div>
@@ -513,27 +513,27 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       )}
 
       {slide.type === 'strategic' && slide.strategicSections && (
-        <div className="flex flex-col gap-6 w-full max-w-6xl mt-10">
+        <div className="flex flex-col gap-4 md:gap-6 w-full max-w-6xl mt-6 md:mt-10 px-4">
           {slide.strategicSections.map((s, i) => (
             <motion.div
               key={i}
               variants={item}
-              className="group relative flex items-center gap-12 p-10 rounded-[32px] bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] hover:border-blitz-green/20 transition-all duration-500"
+              className="group relative flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 p-6 md:p-10 rounded-2xl md:rounded-[32px] bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] hover:border-blitz-green/20 transition-all duration-500"
             >
               <div className="flex-1">
-                <span className="text-blitz-green text-[13px] font-bold uppercase tracking-widest mb-3 block opacity-60 group-hover:opacity-100 transition-opacity">
+                <span className="text-blitz-green text-[11px] md:text-[13px] font-bold uppercase tracking-widest mb-2 md:mb-3 block opacity-60 group-hover:opacity-100 transition-opacity">
                   {s.label}
                 </span>
-                <p className="text-4xl font-bold text-white leading-tight">
+                <p className="text-2xl md:text-4xl font-bold text-white leading-tight">
                   {s.text}
                 </p>
               </div>
               
-              <div className="w-px h-16 bg-white/10" />
+              <div className="hidden md:block w-px h-16 bg-white/10" />
               
-              <div className="w-64 shrink-0">
-                <span className="text-white/30 text-[11px] uppercase font-bold block mb-2">Focus Strategic</span>
-                <span className="text-2xl font-black text-white group-hover:text-blitz-green transition-colors uppercase">
+              <div className="w-full md:w-64 shrink-0">
+                <span className="text-white/30 text-[10px] md:text-[11px] uppercase font-bold block mb-2">Focus Strategic</span>
+                <span className="text-xl md:text-2xl font-black text-white group-hover:text-blitz-green transition-colors uppercase">
                   {s.accent}
                 </span>
               </div>
@@ -546,25 +546,25 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       )}
 
       {slide.type === 'summary' && slide.gridItems && (
-        <div className="grid grid-cols-2 gap-x-20 gap-y-12 w-full max-w-6xl mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 md:gap-x-20 gap-y-8 md:gap-y-12 w-full max-w-6xl mt-6 md:mt-10 px-4">
           {slide.gridItems.map((g, i) => (
             <motion.div
               key={i}
               variants={item}
-              className="flex gap-8 items-start group"
+              className="flex gap-4 md:gap-8 items-start group"
             >
               <div className="flex-shrink-0 mt-1">
-                <div className="w-16 h-16 rounded-2xl bg-blitz-green/10 flex items-center justify-center border border-blitz-green/20 group-hover:bg-blitz-green group-hover:border-blitz-green transition-all duration-500 shadow-lg shadow-blitz-green/5">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-blitz-green/10 flex items-center justify-center border border-blitz-green/20 group-hover:bg-blitz-green group-hover:border-blitz-green transition-all duration-500 shadow-lg shadow-blitz-green/5">
                   <div className="text-blitz-green group-hover:text-blitz-dark transition-colors duration-500">
-                    <div className="scale-110">{g.icon}</div>
+                    <div className="scale-90 md:scale-110">{g.icon}</div>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col">
-                <h3 className="text-2xl font-black text-white mb-3 group-hover:text-blitz-green transition-colors duration-300 tracking-tight">
+                <h3 className="text-lg md:text-2xl font-black text-white mb-2 md:mb-3 group-hover:text-blitz-green transition-colors duration-300 tracking-tight">
                   {g.title}
                 </h3>
-                <p className="text-[17px] text-white/50 leading-relaxed max-w-md font-medium">
+                <p className="text-[14px] md:text-[17px] text-white/50 leading-relaxed max-w-md font-medium">
                   {g.description}
                 </p>
               </div>
@@ -576,27 +576,27 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       {slide.type === 'grid' && slide.gridItems && (
         <div className="w-full max-w-7xl mt-2">
           {(slide.id === 4 || slide.id === 5 || slide.id === 9 || slide.id === 11) ? (
-            /* Strategic Report Grid Layout for Slide 5, 6, 10 & 12 */
-            <div className="w-full max-w-7xl mt-16 px-4">
-              <div className="grid grid-cols-3 gap-x-12 gap-y-10 text-left">
+            /* Strategic Report Grid Layout for Slide 5, 6, 10 & 12 - Mobile Optimized */
+            <div className="w-full max-w-7xl mt-8 md:mt-16 px-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 md:gap-x-12 gap-y-6 md:gap-y-10 text-left">
                 {slide.gridItems.map((g, i) => (
                   <motion.div 
                     key={i} 
                     variants={item}
-                    className={`flex flex-col border-t border-white/10 pt-6 group hover:border-blitz-green/40 transition-colors ${
-                      (slide.id === 4 && i === 6) || (slide.id === 9 && i === 4 && slide.gridItems!.length === 5) ? 'col-start-2' : 
+                    className={`flex flex-col border-t border-white/10 pt-4 md:pt-6 group hover:border-blitz-green/40 transition-colors ${
+                      (slide.id === 4 && i === 6) || (slide.id === 9 && i === 4 && slide.gridItems!.length === 5) ? 'md:col-start-2 lg:col-start-2' : 
                       (slide.id === 11 && slide.gridItems!.length === 4 && i >= 2) ? '' : '' 
                     }`}
                   >
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className={`${slide.id === 4 ? 'text-red-500 bg-red-500/10' : 'text-blitz-green bg-blitz-green/10'} text-[11px] font-black uppercase tracking-[0.2em] px-2 py-0.5 rounded`}>
+                    <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                      <span className={`${slide.id === 4 ? 'text-red-500 bg-red-500/10' : 'text-blitz-green bg-blitz-green/10'} text-[10px] md:text-[11px] font-black uppercase tracking-[0.15em] md:tracking-[0.2em] px-2 py-0.5 rounded`}>
                         {slide.id === 4 ? 'Issue' : slide.id === 11 ? 'Step' : slide.id === 9 ? 'Section' : 'Target'} 0{i + 1}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-3 leading-tight tracking-tight group-hover:text-blitz-green transition-colors">
+                    <h3 className="text-base md:text-xl font-bold text-white mb-2 md:mb-3 leading-tight tracking-tight group-hover:text-blitz-green transition-colors">
                       {g.title.replace(/^\d+\)\s*/, '')}
                     </h3>
-                    <p className="text-[15px] text-white/40 leading-relaxed font-medium">
+                    <p className="text-[13px] md:text-[15px] text-white/40 leading-relaxed font-medium">
                       {g.description}
                     </p>
                   </motion.div>
@@ -677,7 +677,7 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
           {slide.warning && slide.type === 'grid' && (
             <motion.p
               variants={item}
-              className="mt-12 text-blitz-green/60 text-sm font-bold uppercase tracking-widest px-6 py-2 border border-blitz-green/20 bg-blitz-green/5 rounded-full"
+              className="mt-8 md:mt-12 text-blitz-green/60 text-xs md:text-sm font-bold uppercase tracking-widest px-4 md:px-6 py-1.5 md:py-2 border border-blitz-green/20 bg-blitz-green/5 rounded-full"
             >
               ℹ️ {slide.warning}
             </motion.p>
@@ -686,15 +686,30 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       )}
 
       {slide.items && slide.type !== 'grid' && (
-        <div className="grid gap-6 text-left w-full max-w-3xl">
+        <div className="grid gap-4 md:gap-6 text-left w-full max-w-3xl px-4">
           {slide.items.map((text, i) => (
             <motion.div 
               key={i} 
               variants={item}
-              className="flex items-start gap-4 p-6 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors"
+              className="flex items-start gap-3 md:gap-4 p-4 md:p-6 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors"
             >
-              <div className="mt-2 w-2 h-2 rounded-full bg-blitz-green shrink-0" />
-              <p className="text-[22px] leading-relaxed">{text}</p>
+              <div className="mt-1.5 md:mt-2 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-blitz-green shrink-0" />
+              <p className="text-base md:text-[22px] leading-relaxed">{text}</p>
+            </motion.div>
+          ))}
+        </div>
+      )}
+
+      {slide.points && (
+        <div className="flex flex-col md:flex-row gap-6 md:gap-12 mt-6 md:mt-8 px-4">
+          {slide.points.map((p, i) => (
+            <motion.div 
+              key={i} 
+              variants={item}
+              className="flex flex-col items-center p-6 md:p-8 bg-white/5 rounded-xl md:rounded-2xl min-w-[180px] md:min-w-[240px] border border-white/5"
+            >
+              <span className="text-white/50 text-base md:text-lg mb-2">{p.label}</span>
+              <span className="text-3xl md:text-4xl font-bold text-blitz-green">{p.value}</span>
             </motion.div>
           ))}
         </div>
@@ -718,11 +733,11 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       {slide.quote && (
         <motion.div
           variants={item}
-          className="mt-8 w-full max-w-4xl text-center"
+          className="mt-6 md:mt-8 w-full max-w-4xl text-center px-4"
         >
           <div className="flex flex-col items-center">
-            <div className="w-12 h-[1px] bg-blitz-green/30 mb-4" />
-            <p className="text-xl italic text-white/40 font-medium leading-relaxed">
+            <div className="w-8 md:w-12 h-[1px] bg-blitz-green/30 mb-3 md:mb-4" />
+            <p className="text-base md:text-xl italic text-white/40 font-medium leading-relaxed">
               "{slide.quote}"
             </p>
           </div>
@@ -830,44 +845,44 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Overview Mode */}
+      {/* Overview Mode - Mobile Optimized */}
       <AnimatePresence>
         {isOverview && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 z-50 bg-blitz-dark p-16 overflow-y-auto"
+            className="absolute inset-0 z-50 bg-blitz-dark p-4 md:p-16 overflow-y-auto"
           >
-            <div className="flex justify-between items-center mb-16">
+            <div className="flex justify-between items-center mb-8 md:mb-16">
               <div>
-                <h2 className="text-5xl font-bold text-blitz-green mb-2">Prezentare Blitz</h2>
-                <p className="text-white/40">Selectează un slide pentru a naviga</p>
+                <h2 className="text-3xl md:text-5xl font-bold text-blitz-green mb-1 md:mb-2">Prezentare Blitz</h2>
+                <p className="text-sm md:text-base text-white/40">Selectează un slide pentru a naviga</p>
               </div>
               <button 
                 onClick={() => setIsOverview(false)}
-                className="p-4 hover:bg-white/10 rounded-full transition-colors group"
+                className="p-2 md:p-4 hover:bg-white/10 rounded-full transition-colors group"
               >
-                <X size={48} className="group-hover:rotate-90 transition-transform" />
+                <X size={32} className="md:w-12 md:h-12 group-hover:rotate-90 transition-transform" />
               </button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-8">
               {slides.map((slide, index) => (
                 <motion.div
                   key={slide.id}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => goToSlide(index)}
-                  className={`aspect-video p-8 border-2 rounded-2xl cursor-pointer transition-all flex flex-col justify-between ${
+                  className={`aspect-video p-4 md:p-8 border-2 rounded-xl md:rounded-2xl cursor-pointer transition-all flex flex-col justify-between ${
                     currentSlide === index 
                       ? 'border-blitz-green bg-blitz-green/10 shadow-[0_0_30px_rgba(0,210,133,0.2)]' 
                       : 'border-white/10 bg-white/5 hover:border-white/30'
                   }`}
                 >
-                  <span className={`text-sm font-bold ${currentSlide === index ? 'text-blitz-green' : 'text-white/30'}`}>
+                  <span className={`text-xs md:text-sm font-bold ${currentSlide === index ? 'text-blitz-green' : 'text-white/30'}`}>
                     {String(index + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="text-xl font-bold leading-tight">{slide.title}</h3>
+                  <h3 className="text-sm md:text-xl font-bold leading-tight">{slide.title}</h3>
                 </motion.div>
               ))}
             </div>
@@ -878,10 +893,10 @@ export default function App() {
       {/* Navigation UI */}
       {!isOverview && (
         <>
-          {/* Subtle Side Navigation */}
+          {/* Subtle Side Navigation - Hidden on Mobile, Touch-friendly Zones */}
           <div 
             onClick={prevSlide}
-            className={`absolute left-0 top-0 bottom-0 w-32 z-20 cursor-pointer flex items-center justify-start pl-8 group ${currentSlide === 0 ? 'hidden' : ''}`}
+            className={`hidden md:flex absolute left-0 top-0 bottom-0 w-32 z-20 cursor-pointer items-center justify-start pl-8 group ${currentSlide === 0 ? 'hidden' : ''}`}
           >
             <div className="p-4 rounded-full bg-white/0 group-hover:bg-white/5 transition-all">
               <ChevronLeft size={48} className="opacity-0 group-hover:opacity-40 transition-opacity" />
@@ -890,16 +905,16 @@ export default function App() {
           
           <div 
             onClick={nextSlide}
-            className={`absolute right-0 top-0 bottom-0 w-32 z-20 cursor-pointer flex items-center justify-end pr-8 group ${currentSlide === slides.length - 1 ? 'hidden' : ''}`}
+            className={`hidden md:flex absolute right-0 top-0 bottom-0 w-32 z-20 cursor-pointer items-center justify-end pr-8 group ${currentSlide === slides.length - 1 ? 'hidden' : ''}`}
           >
             <div className="p-4 rounded-full bg-white/0 group-hover:bg-white/5 transition-all">
               <ChevronRight size={48} className="opacity-0 group-hover:opacity-40 transition-opacity" />
             </div>
           </div>
 
-          {/* Progress Indicator */}
-          <div className="absolute bottom-12 left-12 right-12 z-20 flex items-center gap-12">
-            <div className="text-sm font-mono text-white/30">
+          {/* Progress Indicator - Mobile Optimized */}
+          <div className="absolute bottom-8 md:bottom-12 left-4 md:left-12 right-4 md:right-12 z-20 flex items-center gap-4 md:gap-12">
+            <div className="text-xs md:text-sm font-mono text-white/30">
               {String(currentSlide + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
             </div>
             <div className="flex-1 h-[2px] bg-white/10 relative overflow-hidden">
@@ -909,12 +924,12 @@ export default function App() {
                 className="absolute top-0 left-0 h-full bg-blitz-green"
               />
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-1 md:gap-2">
               {slides.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full transition-all duration-300 ${
                     currentSlide === index ? 'bg-blitz-green scale-150' : 'bg-white/20 hover:bg-white/40'
                   }`}
                 />
@@ -922,16 +937,16 @@ export default function App() {
             </div>
           </div>
 
-          {/* Branding */}
-          <div className="absolute top-10 left-10 z-20 flex items-center gap-8">
-            <img src={blitzLogo} alt="Blitz Logo" className="h-10 w-auto object-contain" />
-            <div className="h-12 w-[1px] bg-white/10" />
-            <img src={akyLogo} alt="AKY Logo" className="h-12 w-auto object-contain" />
+          {/* Branding - Mobile Optimized */}
+          <div className="absolute top-6 md:top-10 left-4 md:left-10 z-20 flex items-center gap-4 md:gap-8">
+            <img src={blitzLogo} alt="Blitz Logo" className="h-6 md:h-10 w-auto object-contain" />
+            <div className="h-8 md:h-12 w-[1px] bg-white/10" />
+            <img src={akyLogo} alt="AKY Logo" className="h-8 md:h-12 w-auto object-contain" />
           </div>
 
-          <div className="absolute top-12 right-12 z-20">
-            <div className="px-4 py-2 rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-md">
-              <span className="text-[10px] uppercase tracking-widest text-white/40 font-bold">
+          <div className="absolute top-8 md:top-12 right-4 md:right-12 z-20">
+            <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-md">
+              <span className="text-[8px] md:text-[10px] uppercase tracking-widest text-white/40 font-bold">
                 UX Strategy 2026
               </span>
             </div>
@@ -939,8 +954,8 @@ export default function App() {
         </>
       )}
 
-      {/* Main Content Area */}
-      <main className="relative w-full h-full flex items-center justify-center pt-16">
+      {/* Main Content Area - Mobile Optimized Padding */}
+      <main className="relative w-full h-full flex items-center justify-center pt-20 md:pt-16 pb-24 md:pb-16">
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
             key={currentSlide}
@@ -954,14 +969,25 @@ export default function App() {
               opacity: { duration: 0.3 },
               filter: { duration: 0.3 }
             }}
-            className="absolute inset-0 flex items-center justify-center p-16"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = Math.abs(offset.x) * velocity.x;
+              if (swipe < -10000) {
+                nextSlide();
+              } else if (swipe > 10000) {
+                prevSlide();
+              }
+            }}
+            className="absolute inset-0 flex items-center justify-center p-4 md:p-16 cursor-grab active:cursor-grabbing"
           >
             <SlideContent slide={slides[currentSlide]} onImageClick={setSelectedImage} />
           </motion.div>
         </AnimatePresence>
       </main>
 
-      {/* Lightbox / Zoom View */}
+      {/* Lightbox / Zoom View - Mobile Optimized */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -969,7 +995,7 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)}
-            className="absolute inset-0 z-[100] bg-blitz-dark/95 flex items-center justify-center p-12 cursor-zoom-out"
+            className="absolute inset-0 z-[100] bg-blitz-dark/95 flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -984,9 +1010,9 @@ export default function App() {
               />
               <button 
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-0 right-0 p-4 text-white/50 hover:text-white transition-colors"
+                className="absolute top-0 right-0 p-2 md:p-4 text-white/50 hover:text-white transition-colors"
               >
-                <X size={48} />
+                <X size={32} className="md:w-12 md:h-12" />
               </button>
             </motion.div>
           </motion.div>
