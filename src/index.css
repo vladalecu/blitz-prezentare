@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blitz-dark: #051a14;
+  --color-blitz-green: #00d285;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark;
+  color: white;
+  background-color: #051a14;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling as we use full-screen slides */
+  background-color: #051a14;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
