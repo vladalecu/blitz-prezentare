@@ -340,14 +340,14 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       className="flex flex-col items-center justify-center w-full max-w-6xl relative px-4"
     >
       {slide.icon && (
-        <motion.div variants={item} className="mb-6 md:mb-8 p-4 md:p-6 bg-white/5 rounded-xl md:rounded-2xl">
+        <motion.div variants={item} className="mb-3 md:mb-4 p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl">
           {slide.icon}
         </motion.div>
       )}
       
       <motion.h1 
         variants={item}
-        className={`${slide.type === 'hero' ? 'text-[48px] md:text-[84px]' : 'text-[32px] md:text-[52px]'} font-extrabold mb-3 md:mb-4 leading-[1.1] text-center tracking-tight px-4`}
+        className={`${slide.type === 'hero' ? 'text-[48px] md:text-[84px]' : 'text-[28px] md:text-[42px]'} font-extrabold mb-2 md:mb-3 leading-[1.1] text-center tracking-tight px-4`}
       >
         {slide.title}
       </motion.h1>
@@ -355,7 +355,7 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       {slide.subtitle && (
         <motion.p 
           variants={item}
-          className="text-[14px] md:text-[20px] text-blitz-green font-semibold mb-6 md:mb-8 text-center max-w-4xl uppercase tracking-[0.05em] md:tracking-[0.1em] px-4"
+          className="text-[13px] md:text-[16px] text-blitz-green font-semibold mb-4 md:mb-5 text-center max-w-4xl uppercase tracking-[0.05em] md:tracking-[0.1em] px-4"
         >
           {slide.subtitle}
         </motion.p>
@@ -365,7 +365,7 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
         <motion.div
           variants={item}
           onClick={() => onImageClick(slide.image!)}
-          className="relative w-full max-w-5xl aspect-video rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl mb-6 md:mb-8 group cursor-zoom-in"
+          className="relative w-full max-w-4xl aspect-video rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl mb-3 md:mb-4 group cursor-zoom-in"
         >
           <img
             src={slide.image}
@@ -381,8 +381,8 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       )}
 
       {slide.type === 'gallery' && slide.images && (
-        <div className="relative w-full h-auto md:h-[600px] mt-4 md:mt-8 flex items-center justify-center px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 w-full max-w-6xl">
+        <div className="relative w-full h-auto md:max-h-[55vh] mt-3 md:mt-4 flex items-center justify-center px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 w-full max-w-5xl">
             {slide.images.map((img, i) => (
               <motion.div
                 key={i}
@@ -411,7 +411,7 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
         <>
           <motion.div
             variants={item}
-            className={`relative w-full max-w-5xl aspect-video rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl ${slide.points ? 'mb-8 md:mb-12' : ''}`}
+            className={`relative w-full max-w-4xl aspect-video rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl ${slide.points ? 'mb-4 md:mb-6' : ''}`}
           >
             <video
               src={slide.video}
@@ -421,13 +421,12 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
               playsInline
               className="w-full h-full object-cover"
             />
-            {/* Subtle overlay for better text readability if needed */}
             <div className="absolute inset-0 bg-gradient-to-t from-blitz-dark/40 to-transparent pointer-events-none" />
           </motion.div>
           {slide.warning && (
             <motion.p
               variants={item}
-              className="mt-4 md:mt-6 text-red-400/80 text-xs md:text-sm font-bold uppercase tracking-widest px-4 md:px-6 py-1.5 md:py-2 border border-red-400/20 bg-red-400/5 rounded-full"
+              className="mt-3 md:mt-4 text-red-400/80 text-[10px] md:text-xs font-bold uppercase tracking-widest px-3 md:px-5 py-1 md:py-1.5 border border-red-400/20 bg-red-400/5 rounded-full"
             >
               ⚠️ {slide.warning}
             </motion.p>
@@ -436,19 +435,19 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       )}
 
       {slide.type === 'diamond' && slide.diamondSteps && (
-        <div className="relative w-full max-w-7xl mt-8 md:mt-16 px-4 md:px-12 pb-12 md:pb-24">
+        <div className="relative w-full max-w-7xl mt-4 md:mt-6 px-4 md:px-12 pb-8 md:pb-16">
           {/* Main horizontal line - hidden on mobile */}
           <div className="hidden md:block absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-y-1/2 z-0" />
           
-          <div className="flex flex-col md:flex-row items-center justify-between relative z-10 gap-8 md:gap-0">
+          <div className="flex flex-col md:flex-row items-center justify-between relative z-10 gap-6 md:gap-0">
             {slide.diamondSteps.map((s, i) => (
               <motion.div
                 key={i}
                 variants={item}
                 className="relative flex flex-col items-center group flex-1 w-full md:w-auto"
               >
-                {/* Diamond Shape - Smaller on Mobile */}
-                <div className="relative w-48 h-48 md:w-64 md:h-64 mb-6 md:mb-12 transition-transform duration-500 group-hover:scale-105">
+                {/* Diamond Shape */}
+                <div className="relative w-36 h-36 md:w-44 md:h-44 mb-4 md:mb-6 transition-transform duration-500 group-hover:scale-105">
                   <motion.div
                     animate={{ rotate: 45 }}
                     className={`absolute inset-0 border-2 transition-all duration-500 rounded-xl md:rounded-2xl shadow-2xl ${
@@ -457,41 +456,41 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
                         : 'bg-blitz-green/[0.05] border-blitz-green/20 group-hover:border-blitz-green group-hover:bg-blitz-green/10'
                     }`}
                   />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 md:p-10">
-                    <span className="text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em] text-blitz-green font-bold mb-2 md:mb-4 opacity-70">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 md:p-6">
+                    <span className="text-[10px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em] text-blitz-green font-bold mb-1 md:mb-2 opacity-70">
                       {s.phase}
                     </span>
-                    <h3 className="text-lg md:text-2xl font-black leading-tight tracking-tight">
+                    <h3 className="text-base md:text-lg font-black leading-tight tracking-tight">
                       {s.title}
                     </h3>
                   </div>
                 </div>
 
-                {/* Description - Mobile Optimized */}
-                <div className="text-center px-4 md:px-6 min-h-[60px] md:min-h-[80px]">
-                  <p className="text-sm md:text-lg text-white/40 leading-relaxed max-w-[200px] md:max-w-[240px] mx-auto group-hover:text-white transition-colors duration-300">
+                {/* Description */}
+                <div className="text-center px-4 md:px-4 min-h-[50px] md:min-h-[60px]">
+                  <p className="text-xs md:text-sm text-white/40 leading-relaxed max-w-[180px] md:max-w-[200px] mx-auto group-hover:text-white transition-colors duration-300">
                     {s.description}
                   </p>
                 </div>
 
                 {/* Phase separation labels - Hidden on mobile */}
                 {i === 0 && (
-                  <div className="hidden md:flex absolute -bottom-24 left-0 w-full justify-center text-[10px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
+                  <div className="hidden md:flex absolute -bottom-14 left-0 w-full justify-center text-[9px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
                     Divergent (Discover)
                   </div>
                 )}
                 {i === 1 && (
-                  <div className="hidden md:flex absolute -bottom-24 left-0 w-full justify-center text-[10px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
+                  <div className="hidden md:flex absolute -bottom-14 left-0 w-full justify-center text-[9px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
                     Convergent (Define)
                   </div>
                 )}
                 {i === 2 && (
-                  <div className="hidden md:flex absolute -bottom-24 left-0 w-full justify-center text-[10px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
+                  <div className="hidden md:flex absolute -bottom-14 left-0 w-full justify-center text-[9px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
                     Divergent (Develop)
                   </div>
                 )}
                 {i === 3 && (
-                  <div className="hidden md:flex absolute -bottom-24 left-0 w-full justify-center text-[10px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
+                  <div className="hidden md:flex absolute -bottom-14 left-0 w-full justify-center text-[9px] font-bold uppercase tracking-[0.4em] text-white/20 whitespace-nowrap">
                     Convergent (Deliver)
                   </div>
                 )}
@@ -500,39 +499,39 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
           </div>
 
           {/* Section labels - Hidden on mobile */}
-          <div className="hidden md:flex absolute -top-16 left-0 right-0 px-12">
-            <div className="flex-1 text-center border-l border-r border-white/10 py-2">
-              <span className="text-[10px] uppercase tracking-[0.5em] text-white/30 font-black">Problem Space</span>
+          <div className="hidden md:flex absolute -top-10 left-0 right-0 px-12">
+            <div className="flex-1 text-center border-l border-r border-white/10 py-1">
+              <span className="text-[9px] uppercase tracking-[0.5em] text-white/30 font-black">Problem Space</span>
             </div>
-            <div className="flex-1 text-center border-r border-white/10 py-2">
-              <span className="text-[10px] uppercase tracking-[0.5em] text-blitz-green/40 font-black">Solution Space</span>
+            <div className="flex-1 text-center border-r border-white/10 py-1">
+              <span className="text-[9px] uppercase tracking-[0.5em] text-blitz-green/40 font-black">Solution Space</span>
             </div>
           </div>
         </div>
       )}
 
       {slide.type === 'strategic' && slide.strategicSections && (
-        <div className="flex flex-col gap-3 md:gap-4 w-full max-w-6xl mt-4 md:mt-6 px-4">
+        <div className="flex flex-col gap-2.5 md:gap-3 w-full max-w-5xl mt-3 md:mt-5 px-4">
           {slide.strategicSections.map((s, i) => (
             <motion.div
               key={i}
               variants={item}
-              className="group relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-10 p-5 md:p-7 rounded-2xl md:rounded-[24px] bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] hover:border-blitz-green/20 transition-all duration-500"
+              className="group relative flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-8 p-4 md:p-5 rounded-xl md:rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] hover:border-blitz-green/20 transition-all duration-500"
             >
               <div className="flex-1">
-                <span className="text-blitz-green text-[11px] md:text-[12px] font-bold uppercase tracking-widest mb-1.5 md:mb-2 block opacity-60 group-hover:opacity-100 transition-opacity">
+                <span className="text-blitz-green text-[10px] md:text-[11px] font-bold uppercase tracking-widest mb-1 md:mb-1.5 block opacity-60 group-hover:opacity-100 transition-opacity">
                   {s.label}
                 </span>
-                <p className="text-xl md:text-2xl font-bold text-white leading-tight">
+                <p className="text-lg md:text-xl font-bold text-white leading-tight">
                   {s.text}
                 </p>
               </div>
               
-              <div className="hidden md:block w-px h-12 bg-white/10" />
+              <div className="hidden md:block w-px h-10 bg-white/10" />
               
-              <div className="w-full md:w-56 shrink-0">
-                <span className="text-white/30 text-[10px] md:text-[10px] uppercase font-bold block mb-1">Focus Strategic</span>
-                <span className="text-lg md:text-xl font-black text-white group-hover:text-blitz-green transition-colors uppercase">
+              <div className="w-full md:w-48 shrink-0">
+                <span className="text-white/30 text-[9px] md:text-[10px] uppercase font-bold block mb-0.5">Focus Strategic</span>
+                <span className="text-base md:text-lg font-black text-white group-hover:text-blitz-green transition-colors uppercase">
                   {s.accent}
                 </span>
               </div>
@@ -545,25 +544,25 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       )}
 
       {slide.type === 'summary' && slide.gridItems && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 md:gap-x-20 gap-y-8 md:gap-y-12 w-full max-w-6xl mt-6 md:mt-10 px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-16 gap-y-4 md:gap-y-5 w-full max-w-6xl mt-3 md:mt-5 px-4">
           {slide.gridItems.map((g, i) => (
             <motion.div
               key={i}
               variants={item}
-              className="flex gap-4 md:gap-8 items-start group"
+              className="flex gap-3 md:gap-5 items-start group"
             >
               <div className="flex-shrink-0 mt-1">
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-blitz-green/10 flex items-center justify-center border border-blitz-green/20 group-hover:bg-blitz-green group-hover:border-blitz-green transition-all duration-500 shadow-lg shadow-blitz-green/5">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-blitz-green/10 flex items-center justify-center border border-blitz-green/20 group-hover:bg-blitz-green group-hover:border-blitz-green transition-all duration-500 shadow-lg shadow-blitz-green/5">
                   <div className="text-blitz-green group-hover:text-blitz-dark transition-colors duration-500">
-                    <div className="scale-90 md:scale-110">{g.icon}</div>
+                    <div className="scale-75 md:scale-90">{g.icon}</div>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col">
-                <h3 className="text-lg md:text-2xl font-black text-white mb-2 md:mb-3 group-hover:text-blitz-green transition-colors duration-300 tracking-tight">
+                <h3 className="text-base md:text-lg font-black text-white mb-1 md:mb-1.5 group-hover:text-blitz-green transition-colors duration-300 tracking-tight">
                   {g.title}
                 </h3>
-                <p className="text-[14px] md:text-[17px] text-white/50 leading-relaxed max-w-md font-medium">
+                <p className="text-[12px] md:text-[14px] text-white/50 leading-relaxed max-w-md font-medium">
                   {g.description}
                 </p>
               </div>
@@ -573,29 +572,29 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       )}
 
       {slide.type === 'grid' && slide.gridItems && (
-        <div className="w-full max-w-7xl mt-2">
+        <div className="w-full max-w-7xl mt-1">
           {(slide.id === 4 || slide.id === 5 || slide.id === 9 || slide.id === 11) ? (
-            /* Strategic Report Grid Layout for Slide 5, 6, 10 & 12 */
-            <div className="w-full max-w-7xl mt-8 md:mt-16 px-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 md:gap-x-12 gap-y-6 md:gap-y-10 text-left">
+            /* Strategic Report Grid Layout */
+            <div className="w-full max-w-7xl mt-3 md:mt-6 px-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 md:gap-x-10 gap-y-4 md:gap-y-5 text-left">
                 {slide.gridItems.map((g, i) => (
                   <motion.div 
                     key={i} 
                     variants={item}
-                    className={`flex flex-col border-t border-white/10 pt-4 md:pt-6 group hover:border-blitz-green/40 transition-colors ${
+                    className={`flex flex-col border-t border-white/10 pt-3 md:pt-4 group hover:border-blitz-green/40 transition-colors ${
                       (slide.id === 4 && i === 6) || (slide.id === 9 && i === 4 && slide.gridItems!.length === 5) ? 'md:col-start-2 lg:col-start-2' : 
                       (slide.id === 11 && slide.gridItems!.length === 4 && i >= 2) ? '' : '' 
                     }`}
                   >
-                    <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                    <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-1.5">
                       <span className={`${slide.id === 4 ? 'text-red-500 bg-red-500/10' : 'text-blitz-green bg-blitz-green/10'} text-[10px] md:text-[11px] font-black uppercase tracking-[0.15em] md:tracking-[0.2em] px-2 py-0.5 rounded`}>
                         {slide.id === 4 ? 'Issue' : slide.id === 11 ? 'Step' : slide.id === 9 ? 'Section' : 'Target'} 0{i + 1}
                       </span>
                     </div>
-                    <h3 className="text-base md:text-xl font-bold text-white mb-2 md:mb-3 leading-tight tracking-tight group-hover:text-blitz-green transition-colors">
+                    <h3 className="text-sm md:text-base font-bold text-white mb-1 md:mb-1.5 leading-tight tracking-tight group-hover:text-blitz-green transition-colors">
                       {g.title.replace(/^\d+\)\s*/, '')}
                     </h3>
-                    <p className="text-[13px] md:text-[15px] text-white/40 leading-relaxed font-medium">
+                    <p className="text-[12px] md:text-[13px] text-white/40 leading-relaxed font-medium">
                       {g.description}
                     </p>
                   </motion.div>
@@ -676,7 +675,7 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
           {slide.warning && slide.type === 'grid' && (
             <motion.p
               variants={item}
-              className="mt-8 md:mt-12 text-blitz-green/60 text-xs md:text-sm font-bold uppercase tracking-widest px-4 md:px-6 py-1.5 md:py-2 border border-blitz-green/20 bg-blitz-green/5 rounded-full"
+              className="mt-4 md:mt-5 text-blitz-green/60 text-[10px] md:text-xs font-bold uppercase tracking-widest px-3 md:px-5 py-1 md:py-1.5 border border-blitz-green/20 bg-blitz-green/5 rounded-full"
             >
               ℹ️ {slide.warning}
             </motion.p>
@@ -685,45 +684,30 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       )}
 
       {slide.items && slide.type !== 'grid' && (
-        <div className="grid gap-4 md:gap-6 text-left w-full max-w-3xl px-4">
+        <div className="grid gap-3 md:gap-4 text-left w-full max-w-3xl px-4">
           {slide.items.map((text, i) => (
             <motion.div 
               key={i} 
               variants={item}
-              className="flex items-start gap-3 md:gap-4 p-4 md:p-6 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors"
+              className="flex items-start gap-3 md:gap-4 p-3 md:p-5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors"
             >
               <div className="mt-1.5 md:mt-2 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-blitz-green shrink-0" />
-              <p className="text-base md:text-[22px] leading-relaxed">{text}</p>
+              <p className="text-sm md:text-lg leading-relaxed">{text}</p>
             </motion.div>
           ))}
         </div>
       )}
 
       {slide.points && (
-        <div className="flex flex-col md:flex-row gap-6 md:gap-12 mt-6 md:mt-8 px-4">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-8 mt-4 md:mt-5 px-4">
           {slide.points.map((p, i) => (
             <motion.div 
               key={i} 
               variants={item}
-              className="flex flex-col items-center p-6 md:p-8 bg-white/5 rounded-xl md:rounded-2xl min-w-[180px] md:min-w-[240px] border border-white/5"
+              className="flex flex-col items-center p-4 md:p-6 bg-white/5 rounded-xl md:rounded-2xl min-w-[160px] md:min-w-[200px] border border-white/5"
             >
-              <span className="text-white/50 text-base md:text-lg mb-2">{p.label}</span>
-              <span className="text-3xl md:text-4xl font-bold text-blitz-green">{p.value}</span>
-            </motion.div>
-          ))}
-        </div>
-      )}
-
-      {slide.points && (
-        <div className="flex gap-12 mt-8">
-          {slide.points.map((p, i) => (
-            <motion.div 
-              key={i} 
-              variants={item}
-              className="flex flex-col items-center p-8 bg-white/5 rounded-2xl min-w-[240px] border border-white/5"
-            >
-              <span className="text-white/50 text-lg mb-2">{p.label}</span>
-              <span className="text-4xl font-bold text-blitz-green">{p.value}</span>
+              <span className="text-white/50 text-sm md:text-base mb-1">{p.label}</span>
+              <span className="text-2xl md:text-3xl font-bold text-blitz-green">{p.value}</span>
             </motion.div>
           ))}
         </div>
@@ -732,11 +716,11 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       {slide.quote && (
         <motion.div
           variants={item}
-          className="mt-6 md:mt-8 w-full max-w-4xl text-center px-4"
+          className="mt-3 md:mt-4 w-full max-w-4xl text-center px-4"
         >
           <div className="flex flex-col items-center">
-            <div className="w-8 md:w-12 h-[1px] bg-blitz-green/30 mb-3 md:mb-4" />
-            <p className="text-base md:text-xl italic text-white/40 font-medium leading-relaxed">
+            <div className="w-6 md:w-10 h-[1px] bg-blitz-green/30 mb-2 md:mb-3" />
+            <p className="text-sm md:text-base italic text-white/40 font-medium leading-relaxed">
               "{slide.quote}"
             </p>
           </div>
@@ -1005,7 +989,7 @@ export default function App() {
                 prevSlide();
               }
             }}
-            className="absolute inset-0 flex items-center justify-center p-4 md:p-16 cursor-grab active:cursor-grabbing"
+            className="absolute inset-0 flex items-center justify-center p-4 md:px-16 md:py-6 cursor-grab active:cursor-grabbing"
           >
             <SlideContent slide={slides[currentSlide]} onImageClick={setSelectedImage} />
           </motion.div>
