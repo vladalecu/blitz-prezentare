@@ -347,7 +347,7 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       
       <motion.h1 
         variants={item}
-        className={`${slide.type === 'hero' ? 'text-[84px] md:text-[84px] text-[48px]' : 'text-[36px] md:text-[64px]'} font-extrabold mb-4 leading-[1.1] text-center tracking-tight px-4`}
+        className={`${slide.type === 'hero' ? 'text-[48px] md:text-[84px]' : 'text-[32px] md:text-[52px]'} font-extrabold mb-3 md:mb-4 leading-[1.1] text-center tracking-tight px-4`}
       >
         {slide.title}
       </motion.h1>
@@ -355,7 +355,7 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       {slide.subtitle && (
         <motion.p 
           variants={item}
-          className="text-[16px] md:text-[24px] text-blitz-green font-semibold mb-8 md:mb-12 text-center max-w-4xl uppercase tracking-[0.05em] md:tracking-[0.1em] px-4"
+          className="text-[14px] md:text-[20px] text-blitz-green font-semibold mb-6 md:mb-8 text-center max-w-4xl uppercase tracking-[0.05em] md:tracking-[0.1em] px-4"
         >
           {slide.subtitle}
         </motion.p>
@@ -512,27 +512,27 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       )}
 
       {slide.type === 'strategic' && slide.strategicSections && (
-        <div className="flex flex-col gap-4 md:gap-6 w-full max-w-6xl mt-6 md:mt-10 px-4">
+        <div className="flex flex-col gap-3 md:gap-4 w-full max-w-6xl mt-4 md:mt-6 px-4">
           {slide.strategicSections.map((s, i) => (
             <motion.div
               key={i}
               variants={item}
-              className="group relative flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 p-6 md:p-10 rounded-2xl md:rounded-[32px] bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] hover:border-blitz-green/20 transition-all duration-500"
+              className="group relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-10 p-5 md:p-7 rounded-2xl md:rounded-[24px] bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] hover:border-blitz-green/20 transition-all duration-500"
             >
               <div className="flex-1">
-                <span className="text-blitz-green text-[11px] md:text-[13px] font-bold uppercase tracking-widest mb-2 md:mb-3 block opacity-60 group-hover:opacity-100 transition-opacity">
+                <span className="text-blitz-green text-[11px] md:text-[12px] font-bold uppercase tracking-widest mb-1.5 md:mb-2 block opacity-60 group-hover:opacity-100 transition-opacity">
                   {s.label}
                 </span>
-                <p className="text-2xl md:text-4xl font-bold text-white leading-tight">
+                <p className="text-xl md:text-2xl font-bold text-white leading-tight">
                   {s.text}
                 </p>
               </div>
               
-              <div className="hidden md:block w-px h-16 bg-white/10" />
+              <div className="hidden md:block w-px h-12 bg-white/10" />
               
-              <div className="w-full md:w-64 shrink-0">
-                <span className="text-white/30 text-[10px] md:text-[11px] uppercase font-bold block mb-2">Focus Strategic</span>
-                <span className="text-xl md:text-2xl font-black text-white group-hover:text-blitz-green transition-colors uppercase">
+              <div className="w-full md:w-56 shrink-0">
+                <span className="text-white/30 text-[10px] md:text-[10px] uppercase font-bold block mb-1">Focus Strategic</span>
+                <span className="text-lg md:text-xl font-black text-white group-hover:text-blitz-green transition-colors uppercase">
                   {s.accent}
                 </span>
               </div>
