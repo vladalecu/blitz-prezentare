@@ -337,7 +337,7 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       variants={container}
       initial="hidden"
       animate="show"
-      className="flex flex-col items-center justify-start md:justify-center w-full max-w-6xl relative px-4 py-8 md:py-0 min-h-full md:min-h-0"
+      className="flex flex-col items-center justify-center w-full max-w-6xl relative px-4"
     >
       {slide.icon && (
         <motion.div variants={item} className="mb-6 md:mb-8 p-4 md:p-6 bg-white/5 rounded-xl md:rounded-2xl">
@@ -381,8 +381,8 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       )}
 
       {slide.type === 'gallery' && slide.images && (
-        <div className="relative w-full h-auto mt-4 md:mt-8 flex items-center justify-center px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 w-full max-w-6xl">
+        <div className="relative w-full h-auto md:h-[600px] mt-4 md:mt-8 flex items-center justify-center px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 w-full max-w-6xl">
             {slide.images.map((img, i) => (
               <motion.div
                 key={i}
@@ -512,7 +512,7 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       )}
 
       {slide.type === 'strategic' && slide.strategicSections && (
-        <div className="flex flex-col gap-6 md:gap-6 w-full max-w-6xl mt-6 md:mt-10 px-4">
+        <div className="flex flex-col gap-4 md:gap-6 w-full max-w-6xl mt-6 md:mt-10 px-4">
           {slide.strategicSections.map((s, i) => (
             <motion.div
               key={i}
@@ -575,9 +575,9 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
       {slide.type === 'grid' && slide.gridItems && (
         <div className="w-full max-w-7xl mt-2">
           {(slide.id === 4 || slide.id === 5 || slide.id === 9 || slide.id === 11) ? (
-            /* Strategic Report Grid Layout for Slide 5, 6, 10 & 12 - Mobile Scrollable */
+            /* Strategic Report Grid Layout for Slide 5, 6, 10 & 12 */
             <div className="w-full max-w-7xl mt-8 md:mt-16 px-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 md:gap-x-12 gap-y-8 md:gap-y-10 text-left">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 md:gap-x-12 gap-y-6 md:gap-y-10 text-left">
                 {slide.gridItems.map((g, i) => (
                   <motion.div 
                     key={i} 
@@ -592,10 +592,10 @@ const SlideContent = ({ slide, onImageClick }: { slide: SlideData; onImageClick:
                         {slide.id === 4 ? 'Issue' : slide.id === 11 ? 'Step' : slide.id === 9 ? 'Section' : 'Target'} 0{i + 1}
                       </span>
                     </div>
-                    <h3 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3 leading-tight tracking-tight group-hover:text-blitz-green transition-colors">
+                    <h3 className="text-base md:text-xl font-bold text-white mb-2 md:mb-3 leading-tight tracking-tight group-hover:text-blitz-green transition-colors">
                       {g.title.replace(/^\d+\)\s*/, '')}
                     </h3>
-                    <p className="text-[14px] md:text-[15px] text-white/40 leading-relaxed font-medium">
+                    <p className="text-[13px] md:text-[15px] text-white/40 leading-relaxed font-medium">
                       {g.description}
                     </p>
                   </motion.div>
@@ -819,7 +819,7 @@ export default function App() {
   };
 
   return (
-    <div className="relative w-full h-full bg-blitz-dark overflow-hidden md:overflow-hidden font-sans text-white select-none">
+    <div className="relative w-full h-full bg-blitz-dark overflow-hidden font-sans text-white select-none">
       {/* Global Background Layer for Images */}
       <AnimatePresence mode="wait">
         {slides[currentSlide].bgImage && (
@@ -938,7 +938,7 @@ export default function App() {
           </div>
 
           {/* Progress Indicator - Mobile Sticky, Desktop Absolute */}
-          <div className="fixed md:absolute bottom-4 md:bottom-12 left-4 md:left-12 right-4 md:right-12 z-30 flex items-center gap-4 md:gap-12 bg-blitz-dark/80 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none p-3 md:p-0 rounded-full md:rounded-none border md:border-0 border-white/10">
+          <div className="fixed md:absolute bottom-4 md:bottom-12 left-4 md:left-12 right-4 md:right-12 z-30 flex items-center gap-4 md:gap-12 bg-blitz-dark/90 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none p-3 md:p-0 rounded-full md:rounded-none border md:border-0 border-white/10">
             <div className="text-xs md:text-sm font-mono text-white/30">
               {String(currentSlide + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
             </div>
@@ -949,7 +949,7 @@ export default function App() {
                 className="absolute top-0 left-0 h-full bg-blitz-green"
               />
             </div>
-            <div className="hidden md:flex gap-1 md:gap-2">
+            <div className="flex gap-1 md:gap-2">
               {slides.map((_, index) => (
                 <button
                   key={index}
@@ -980,7 +980,7 @@ export default function App() {
       )}
 
       {/* Main Content Area - Mobile Scrollable, Desktop Full-Screen */}
-      <main className="relative w-full h-full flex items-start md:items-center justify-center overflow-y-auto md:overflow-hidden pt-20 md:pt-16 pb-24 md:pb-16">
+      <main className="relative w-full h-full flex items-center justify-center overflow-y-auto md:overflow-hidden pt-20 md:pt-16 pb-24 md:pb-16">
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
             key={currentSlide}
@@ -1005,7 +1005,7 @@ export default function App() {
                 prevSlide();
               }
             }}
-            className="w-full flex items-center justify-center p-4 md:p-16 md:cursor-grab md:active:cursor-grabbing"
+            className="absolute inset-0 flex items-center justify-center p-4 md:p-16 cursor-grab active:cursor-grabbing"
           >
             <SlideContent slide={slides[currentSlide]} onImageClick={setSelectedImage} />
           </motion.div>
